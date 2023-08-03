@@ -41,7 +41,7 @@ resource "random_string" "random_suffix" {
 }
 
 resource "azurerm_storage_container" "pov-011" {
-  name                  = "pov011content-$(random_string.random_suffix.result)"
+  name                  = "pov011content-b"
   storage_account_name  = azurerm_storage_account.pov-011.name
   container_access_type = "private"
 }

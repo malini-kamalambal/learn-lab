@@ -1,10 +1,32 @@
 variable "humanitec_organization" {}
 variable "humanitec_token" {}
-variable "region" {}
-variable "access_key" {}
-variable "secret_key" {}
-variable "assume_role_arn" {}
+variable "location" {}
 variable "app_name" {}
+
+variable "resource_group_name" {
+  description = "Name of the Azure Resource Group"
+  type        = string
+}
+
+variable "subscription_id" {
+  description = "Azure Subscription ID"
+  type        = string
+}
+
+variable "azure_subscription_tenant_id" {
+  description = "Azure Subscription Tenant ID"
+  type        = string
+}
+
+variable "service_principal_appid" {
+  description = "Azure Service Principal App ID"
+  type        = string
+}
+
+variable "service_principal_password" {
+  description = "Azure Service Principal Password"
+  type        = string
+}
 
 terraform {
   required_providers {
@@ -24,7 +46,7 @@ resource "humanitec_application" "app" {
   name = var.app_name
 }
 
-resource "humanitec_resource_definition" "aws_terraform_resource_s3_bucket" {
+resource "humanitec_resource_definition" "azure_terraform_resource_container" {
   driver_type = "${var.humanitec_organization}/terraform"
   id          = "${var.app_name}-azure-blob-store"
   name        = "${var.app_name}-azure-blob-store"
@@ -41,12 +63,14 @@ resource "humanitec_resource_definition" "aws_terraform_resource_s3_bucket" {
       variables = jsonencode({
         # access_key = var.access_key
         # secret_key = var.secret_key
-        client_id = var.ARM_CLIENT_ID
-        client_secret = var.ARM_CLIENT_SECRET
-        azure_subscription_id = var.ARM_SUBSCRIPTION_ID
-        tenant_id = var.ARM_TENANT_ID
+        service_principal_appid = var.service_principal_appid
+        service_principal_password = var.service_principal_password
+        azure_subscription_id = var.subscription_id
+        azure_subscription_tenant_id = var.azure_subscription_tenant_id
       })
     },
+    features = {},
+
     values = {
       "source" = jsonencode(
         {
@@ -57,7 +81,7 @@ resource "humanitec_resource_definition" "aws_terraform_resource_s3_bucket" {
       )
       "variables" = jsonencode(
         {
-          location            = var.region,
+          location            = var.location,
           resource_group_name = var.resource_group_name,
         }
       )
