@@ -1,0 +1,6 @@
+resource_group_name = "pov011rg"
+location            = "eastus"
+subscription_id     = " "
+azure_subscription_tenant_id = " "
+service_principal_appid = " "
+service_principal_password = " "
