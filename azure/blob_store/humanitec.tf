@@ -69,7 +69,6 @@ resource "humanitec_resource_definition" "azure_terraform_resource_container" {
         azure_subscription_tenant_id = var.azure_subscription_tenant_id
       })
     },
-    features = {},
 
     values = {
       "source" = jsonencode(
