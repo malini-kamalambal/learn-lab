@@ -7,7 +7,7 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.0.2"
-      configuration_aliases = [azurerm.some_name]
+#      configuration_aliases = [azurerm.some_name]
     }
   }
 
@@ -15,7 +15,7 @@ terraform {
 }
 
 provider "azurerm" {
-  alias = "some_name"
+ # alias = "some_name"
   features {}
   subscription_id   =  var.azure_subscription_id
   tenant_id         =  var.azure_subscription_tenant_id
@@ -24,13 +24,13 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "pov-011" {
-  provider = azurerm.some_name
+#  provider = azurerm.some_name
   name     = var.resource_group_name
   location = var.location
 }
 
 resource "azurerm_storage_account" "pov-011" {
-  provider = azurerm.some_name
+#  provider = azurerm.some_name
   name                     = "pov011storacc"
   resource_group_name      = azurerm_resource_group.pov-011.name
   location                 = azurerm_resource_group.pov-011.location
@@ -45,7 +45,7 @@ resource "azurerm_storage_account" "pov-011" {
 # }
 
 resource "azurerm_storage_container" "pov-011" {
-  provider = azurerm.some_name
+#  provider = azurerm.some_name
   name                  = "pov011content-b"
   storage_account_name  = azurerm_storage_account.pov-011.name
   container_access_type = "private"
