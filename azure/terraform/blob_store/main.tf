@@ -1,13 +1,18 @@
 output "container" {
   value = azurerm_storage_container.pov-011.name
 }
+
+output "nice_message" {
+  value = "How Do Do"
+}
+
+
 # Configure the Azure provider
 terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 3.67.0"
-#      configuration_aliases = [azurerm.some_name]
     }
   }
 
@@ -15,7 +20,6 @@ terraform {
 }
 
 provider "azurerm" {
- # alias = "some_name"
   features {}
   subscription_id   =  var.azure_subscription_id
   tenant_id         =  var.azure_subscription_tenant_id
@@ -24,13 +28,11 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "pov-011" {
-#  provider = azurerm.some_name
   name     = var.resource_group_name
   location = var.location
 }
 
 resource "azurerm_storage_account" "pov-011" {
-#  provider = azurerm.some_name
   name                     = "pov011storacc"
   resource_group_name      = azurerm_resource_group.pov-011.name
   location                 = azurerm_resource_group.pov-011.location
@@ -38,14 +40,7 @@ resource "azurerm_storage_account" "pov-011" {
   account_replication_type = "LRS"
 }
 
-# resource "random_string" "random_suffix" {
-#   length  = 3
-#   special = false
-#   upper   = false
-# }
-
 resource "azurerm_storage_container" "pov-011" {
-#  provider = azurerm.some_name
   name                  = "pov011content-b"
   storage_account_name  = azurerm_storage_account.pov-011.name
   container_access_type = "private"

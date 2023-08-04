@@ -1,0 +1,17 @@
+---
+apiVersion: score.dev/v1b1
+
+metadata:
+  name: mk-test-app
+
+containers:
+  backend:
+    image: ubuntu:latest
+    command: ["/bin/bash"]
+    args: ["-c", "while true; do printenv; echo \"****\"; sleep 120; done"]
+    variables:
+      ZZZ_BUCKET_NAME: ${externals.terrafom-azure-container.container}
+
+resources:
+  "terrafom-azure-container":
+    type: s3
