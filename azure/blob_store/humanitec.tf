@@ -41,6 +41,7 @@ provider "humanitec" {
   token  = var.humanitec_token
 }
 
+
 resource "humanitec_application" "app" {
   id   = var.app_name
   name = var.app_name
