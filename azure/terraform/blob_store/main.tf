@@ -6,7 +6,8 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.0.2"
+      version = ">= 3.0.2"
+      # configuration_aliases = [azurerm.some_name]
     }
   }
 
@@ -37,11 +38,11 @@ resource "azurerm_storage_account" "pov-011" {
   account_replication_type = "LRS"
 }
 
-resource "random_string" "random_suffix" {
-  length  = 3
-  special = false
-  upper   = false
-}
+# resource "random_string" "random_suffix" {
+#   length  = 3
+#   special = false
+#   upper   = false
+# }
 
 resource "azurerm_storage_container" "pov-011" {
   provider = azurerm.some_name
