@@ -27,26 +27,26 @@ provider "azurerm" {
   client_secret     =  var.service_principal_password
 }
 
-resource "azurerm_resource_group" "pov-011" {
-  name     = var.resource_group_name
-  location = var.location
-}
-
-resource "azurerm_storage_account" "pov-011" {
-  name                     = "pov011storageacc"
-  resource_group_name      = azurerm_resource_group.pov-011.name
-  location                 = azurerm_resource_group.pov-011.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
+# resource "azurerm_resource_group" "pov-011" {
+#   name     = var.resource_group_name
+#   location = var.location
+# }
 
 resource "random_string" "random" {
   length  = 16
   special = false
 }
 
+resource "azurerm_storage_account" "pov-011" {
+  name                     = "pov011storageacc${lower(random_string.random.result)}"
+  resource_group_name      = var.resource_group_name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
 resource "azurerm_storage_container" "pov-011" {
-  name = "pov011${lower(random_string.random.result)}"
+  name = "pov011storagecontainer${lower(random_string.random.result)}"
   storage_account_name  = azurerm_storage_account.pov-011.name
   container_access_type = "private"
 }

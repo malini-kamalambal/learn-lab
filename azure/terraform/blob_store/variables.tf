@@ -1,17 +1,7 @@
 variable "resource_group_name" {
-  description = "Name of the Azure Resource Group"
+  description = "Name of the Azure Resource Group to use"
   type        = string
 }
-
-# variable "container_name" {
-#   description = "Azure Container Name"
-#   type        = string
-# }
-
-# variable "storage_account_name" {
-#   description = "Azure Storage Account Name"
-#   type        = string
-# }
 
 variable "location" {
   description = "Location of Azure Resources"

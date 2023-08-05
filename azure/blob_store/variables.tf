@@ -4,7 +4,7 @@ variable "location" {}
 variable "app_name" {}
 
 variable "resource_group_name" {
-  description = "Name of the Azure Resource Group"
+  description = "Name of the Azure Resource Group to be used"
   type        = string
 }
 
