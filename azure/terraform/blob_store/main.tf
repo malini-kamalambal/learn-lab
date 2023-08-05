@@ -33,15 +33,20 @@ resource "azurerm_resource_group" "pov-011" {
 }
 
 resource "azurerm_storage_account" "pov-011" {
-  name                     = var.storage_account_name
+  name                     = "pov-011-storageacc"
   resource_group_name      = azurerm_resource_group.pov-011.name
   location                 = azurerm_resource_group.pov-011.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
 
+resource "random_string" "random" {
+  length  = 16
+  special = false
+}
+
 resource "azurerm_storage_container" "pov-011" {
-  name                  = var.container_name
+  name = "mypov-${lower(random_string.random.result)}"
   storage_account_name  = azurerm_storage_account.pov-011.name
   container_access_type = "private"
 }

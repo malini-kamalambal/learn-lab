@@ -50,9 +50,9 @@ resource "humanitec_resource_definition" "azure_terraform_resource_container" {
       "variables" = jsonencode(
         {
           location            = var.location,
-          resource_group_name = var.resource_group_name,
-          storage_acccount_name = "pov-011-storageacc-$${context.app.id}-$${context.env.id}",
-          container_name = "pov-011-container-$${context.app.id}-$${context.env.id}"
+          resource_group_name = var.resource_group_name
+          # storage_acccount_name = "pov-011-storageacc-$${context.app.id}-$${context.env.id}",
+          # container_name = "pov-011-container-$${context.app.id}-$${context.env.id}"
         }
       )
     }
