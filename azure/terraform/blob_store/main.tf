@@ -2,8 +2,8 @@ output "container" {
   value = azurerm_storage_container.pov-011.name
 }
 
-output "nice_message" {
-  value = "How Do Do"
+output "storage_account_name" {
+  value = azurerm_storage_account.pov.name
 }
 
 
@@ -33,7 +33,7 @@ resource "azurerm_resource_group" "pov-011" {
 }
 
 resource "azurerm_storage_account" "pov-011" {
-  name                     = "pov011storacc"
+  name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.pov-011.name
   location                 = azurerm_resource_group.pov-011.location
   account_tier             = "Standard"
@@ -41,7 +41,7 @@ resource "azurerm_storage_account" "pov-011" {
 }
 
 resource "azurerm_storage_container" "pov-011" {
-  name                  = "pov011content-b"
+  name                  = var.container_name
   storage_account_name  = azurerm_storage_account.pov-011.name
   container_access_type = "private"
 }

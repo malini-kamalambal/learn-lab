@@ -32,8 +32,6 @@ resource "humanitec_resource_definition" "azure_terraform_resource_container" {
   driver_inputs = {
     secrets = {
       variables = jsonencode({
-        # access_key = var.access_key
-        # secret_key = var.secret_key
         service_principal_appid = var.service_principal_appid
         service_principal_password = var.service_principal_password
         azure_subscription_id = var.subscription_id
@@ -53,6 +51,8 @@ resource "humanitec_resource_definition" "azure_terraform_resource_container" {
         {
           location            = var.location,
           resource_group_name = var.resource_group_name,
+          storage_acccount_name = "pov-011-storageacc-$${context.app.id}-$${context.env.id}"
+          container_name = "pov-011-container-$${context.app.id}-$${context.env.id}"
         }
       )
     }
