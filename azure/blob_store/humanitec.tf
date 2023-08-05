@@ -51,7 +51,7 @@ resource "humanitec_resource_definition" "azure_terraform_resource_container" {
         {
           location            = var.location,
           resource_group_name = var.resource_group_name,
-          storage_acccount_name = "pov-011-storageacc-$${context.app.id}-$${context.env.id}"
+          storage_acccount_name = "pov-011-storageacc-$${context.app.id}-$${context.env.id}",
           container_name = "pov-011-container-$${context.app.id}-$${context.env.id}"
         }
       )
