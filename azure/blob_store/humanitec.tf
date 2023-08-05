@@ -25,7 +25,8 @@ resource "humanitec_resource_definition" "azure_terraform_resource_container" {
 
   criteria = [
     {
-      app_id = humanitec_application.app.id
+      # app_id = humanitec_application.app.id
+      env_type = "development"
     }
   ]
 

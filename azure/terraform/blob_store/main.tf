@@ -3,7 +3,7 @@ output "container" {
 }
 
 output "storage_account_name" {
-  value = azurerm_storage_account.pov.name
+  value = azurerm_storage_account.pov-011.name
 }
 
 
