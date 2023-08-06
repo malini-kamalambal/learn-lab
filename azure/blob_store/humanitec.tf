@@ -12,10 +12,10 @@ provider "humanitec" {
 }
 
 
-resource "humanitec_application" "app" {
-  id   = var.app_name
-  name = var.app_name
-}
+# resource "humanitec_application" "app" {
+#   id   = var.app_name
+#   name = var.app_name
+# }
 
 resource "humanitec_resource_definition" "azure_terraform_resource_container" {
   driver_type = "${var.humanitec_organization}/terraform"
